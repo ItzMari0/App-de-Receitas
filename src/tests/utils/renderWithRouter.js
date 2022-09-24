@@ -1,19 +1,18 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import { render } from '@testing-library/react';
+import App from '../../App';
 
-function renderWithRouter(
-  path,
-  {
-    initialEntries = ['/'],
-    history = createMemoryHistory({ initialEntries }),
-  } = {},
-) {
-  return {
-    ...render(<Router history={ history }>{path}</Router>),
-    history,
-  };
+function renderWithRouter(path) {
+  const history = createBrowserHistory();
+  history.push(path);
+  const { ...resources } = render(
+    <Router history={ history }>
+      <App />
+    </Router>,
+  );
+  return { ...resources, history };
 }
 
 export default renderWithRouter;
