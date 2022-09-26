@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header() {
   const [searchBar, setSearchBar] = useState(false);
@@ -10,8 +11,14 @@ function Header() {
   let pageTitle = '';
   let showSearchIcon = true;
 
-  if (location.pathname === '/meals') pageTitle = 'Meals';
-  if (location.pathname === '/drinks') pageTitle = 'Drinks';
+  if (location.pathname === '/meals') {
+    pageTitle = 'Meals';
+  }
+
+  if (location.pathname === '/drinks') {
+    pageTitle = 'Drinks';
+  }
+
   if (location.pathname === '/profile') {
     pageTitle = 'Profile';
     showSearchIcon = false;
@@ -54,7 +61,7 @@ function Header() {
           />
         </button>)}
       {searchBar && (
-        <input type="text" data-testid="search-input" />)}
+        <SearchBar />) }
     </header>
   );
 }
