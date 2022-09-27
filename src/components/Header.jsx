@@ -61,7 +61,7 @@ function Header() {
           />
         </button>)}
       {searchBar && (
-        <SearchBar />) }
+        <SearchBar history={ history } />) }
     </header>
   );
 }
