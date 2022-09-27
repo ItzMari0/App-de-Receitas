@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 function Profile() {
   const history = useHistory();
-  const email = localStorage.getItem('user');
-  const object = JSON.parse(email);
+  const [user, setUser] = useState({ email: '' });
+
+  useEffect(() => {
+    if (localStorage.getItem('user') !== null) {
+      setUser(JSON.parse(localStorage.getItem('user')));
+    }
+  }, []);
 
   return (
     <div>
       <Header />
       <div>
         <p data-testid="profile-email">
-          { object.email }
+          { user.email }
         </p>
         <button
           data-testid="profile-done-btn"
