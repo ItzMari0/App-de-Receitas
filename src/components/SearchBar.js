@@ -11,7 +11,6 @@ function SearchBar({ history }) {
   const location = useLocation();
   const [recipeSearch, setRecipeSearch] = useState('');
   const [searchRadio, setSearchRadio] = useState('');
-  // const [recipes, setRecipes] = useState([]);
   const [searchBtnDisabled, setSearchBtnDisabled] = useState(true);
   const { recipes, setRecipes } = useContext(RecipeAppContext);
 

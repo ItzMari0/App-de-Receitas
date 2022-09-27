@@ -1,31 +1,32 @@
 import React, { useContext } from 'react';
 import RecipeAppContext from '../context/RecipeAppContext';
 
-// const MAXRECIPES = 12;
+const MAXLIST = 12;
 
-function Recipes() {
-  const { recipes } = useContext(RecipeAppContext);
+function DrinkRecipesCard() {
+  let { recipes } = useContext(RecipeAppContext);
+  recipes = recipes.filter((_list, index) => index < MAXLIST);
 
   return (
     <main>
       <div>
         {recipes.length > 1 && (
           recipes.map((list, index) => {
-            const { strMeal, strMealThumb, idMeal } = list;
+            const { strDrink, strDrinkThumb, idDrink } = list;
             return (
               <div
                 data-testid={ `${index}-recipe-card` }
-                key={ idMeal }
+                key={ idDrink }
               >
                 <img
                   data-testid={ `${index}-card-img` }
-                  src={ strMealThumb }
-                  alt={ strMeal }
+                  src={ strDrinkThumb }
+                  alt={ strDrink }
                 />
                 <p
                   data-testid={ `${index}-card-name` }
                 >
-                  {strMeal}
+                  {strDrink}
                 </p>
               </div>
             );
@@ -36,4 +37,4 @@ function Recipes() {
   );
 }
 
-export default Recipes;
+export default DrinkRecipesCard;
