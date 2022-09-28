@@ -10,6 +10,8 @@ function Profile() {
   useEffect(() => {
     if (localStorage.getItem('user') !== null) {
       setUser(JSON.parse(localStorage.getItem('user')));
+    } else {
+      setUser({ email: 'No Profile Found!' });
     }
   }, []);
 
