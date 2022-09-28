@@ -43,7 +43,7 @@ describe('App test coverage', () => {
       expect(loginBtn).toBeEnabled();
     });
 
-    it('redirects to Recipes screen after Logging in', () => {
+    it('redirects to Meals Page screen after Logging in', () => {
       const { history } = renderWithRouter(<App />);
 
       expect(history.location.pathname).toBe('/');
@@ -115,38 +115,6 @@ describe('App test coverage', () => {
       expect(profileBtn).toBeInTheDocument();
       const searchBtn = screen.queryByTestId(SEARCH_ICON_ID);
       expect(searchBtn).not.toBeInTheDocument();
-    });
-  });
-
-  describe('Profile page coverage', () => {
-    it('Redirects to Done Recipes page ', () => {
-      const { history } = renderWithRouter('/profile');
-
-      const doneRecipesBtn = screen.getByTestId('profile-done-btn');
-      expect(doneRecipesBtn).toBeInTheDocument();
-
-      userEvent.click(doneRecipesBtn);
-      expect(history.location.pathname).toBe('/done-recipes');
-    });
-
-    it('Redirects to Favorite Recipes page ', () => {
-      const { history } = renderWithRouter('/profile');
-
-      const favRecipesBtn = screen.getByTestId('profile-favorite-btn');
-      expect(favRecipesBtn).toBeInTheDocument();
-
-      userEvent.click(favRecipesBtn);
-      expect(history.location.pathname).toBe('/favorite-recipes');
-    });
-
-    it('Logs out from Profile Page', () => {
-      const { history } = renderWithRouter('/profile');
-
-      const logoutBtn = screen.getByTestId('profile-logout-btn');
-      expect(logoutBtn).toBeInTheDocument();
-
-      userEvent.click(logoutBtn);
-      expect(history.location.pathname).toBe('/');
     });
   });
 });
