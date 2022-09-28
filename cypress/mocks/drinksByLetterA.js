@@ -1325,7 +1325,7 @@ const drinksByLetterA = {
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-04-24 22:18:22"
     }
-  ]
-}
+  ],
+};
 
 module.exports = drinksByLetterA;

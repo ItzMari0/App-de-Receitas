@@ -1815,7 +1815,7 @@ const mealsByLetterB = {
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
     }
-  ]
-}
+  ],
+};
 
 module.exports = mealsByLetterB;
