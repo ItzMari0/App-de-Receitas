@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import RecipeAppContext from '../context/RecipeAppContext';
 import fetchMeals from '../API/MealsAPI';
 
@@ -9,10 +10,12 @@ function MealRecipesCard() {
   let { recipes } = useContext(RecipeAppContext);
   const { setRecipes } = useContext(RecipeAppContext);
   const [mealCategory, setMealCategory] = useState([]);
+  const [toggleFilter, setToggleFilter] = useState(false);
 
   const getMeals = async () => {
     const allRecipes = await fetchMeals('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     setRecipes(allRecipes);
+    setToggleFilter((prevState) => !prevState);
   };
 
   const categoryFetch = async () => {
@@ -29,6 +32,7 @@ function MealRecipesCard() {
     const { value } = target;
     const filteredRecipes = (await fetchMeals(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${value}`));
     setRecipes(filteredRecipes.filter((_list, index) => index < MAXLIST));
+    setToggleFilter((prevState) => !prevState);
   };
 
   recipes = recipes.filter((_list, index) => index < MAXLIST);
@@ -45,15 +49,24 @@ function MealRecipesCard() {
               key={ index }
               value={ strCategory }
               data-testid={ `${strCategory}-category-filter` }
-              onClick={ handleCategoryFilter }
+              onClick={ toggleFilter ? handleCategoryFilter : getMeals }
             >
               {strCategory}
             </button>
           );
         })}
+        <button
+          type="button"
+          name="category"
+          value="all"
+          data-testid="All-category-filter"
+          onClick={ getMeals }
+        >
+          All
+        </button>
       </div>
       <div>
-        {recipes.length > 1 && (
+        {recipes.length > 0 && (
           recipes.map((list, index) => {
             const { strMeal, strMealThumb, idMeal } = list;
             return (
@@ -61,16 +74,18 @@ function MealRecipesCard() {
                 data-testid={ `${index}-recipe-card` }
                 key={ idMeal }
               >
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ strMealThumb }
-                  alt={ strMeal }
-                />
-                <p
-                  data-testid={ `${index}-card-name` }
-                >
-                  {strMeal}
-                </p>
+                <Link to={ `/meals/${idMeal}` }>
+                  <img
+                    data-testid={ `${index}-card-img` }
+                    src={ strMealThumb }
+                    alt={ strMeal }
+                  />
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {strMeal}
+                  </p>
+                </Link>
               </div>
             );
           })

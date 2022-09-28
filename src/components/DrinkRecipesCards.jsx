@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import fetchDrinks from '../API/DrinksAPI';
 import RecipeAppContext from '../context/RecipeAppContext';
 
@@ -9,10 +10,12 @@ function DrinkRecipesCard() {
   let { recipes } = useContext(RecipeAppContext);
   const { setRecipes } = useContext(RecipeAppContext);
   const [drinkCategory, setDrinkCategory] = useState([]);
+  const [toggleFilter, setToggleFilter] = useState(false);
 
   const getDrinks = async () => {
     const allRecipes = await fetchDrinks('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
     setRecipes(allRecipes);
+    setToggleFilter((prevState) => !prevState);
   };
 
   const categoryFetch = async () => {
@@ -28,6 +31,7 @@ function DrinkRecipesCard() {
     const { value } = target;
     const filteredRecipes = (await fetchDrinks(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`));
     setRecipes(filteredRecipes.filter((_list, index) => index < MAXLIST));
+    setToggleFilter((prevState) => !prevState);
   };
 
   recipes = recipes.filter((_list, index) => index < MAXLIST);
@@ -44,12 +48,21 @@ function DrinkRecipesCard() {
               key={ index }
               value={ strCategory }
               data-testid={ `${strCategory}-category-filter` }
-              onClick={ handleCategoryFilter }
+              onClick={ toggleFilter ? handleCategoryFilter : getDrinks }
             >
               {strCategory}
             </button>
           );
         })}
+        <button
+          type="button"
+          name="category"
+          value="all"
+          data-testid="All-category-filter"
+          onClick={ getDrinks }
+        >
+          All
+        </button>
       </div>
       <div>
         {recipes.length > 1 && (
@@ -60,16 +73,18 @@ function DrinkRecipesCard() {
                 data-testid={ `${index}-recipe-card` }
                 key={ idDrink }
               >
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ strDrinkThumb }
-                  alt={ strDrink }
-                />
-                <p
-                  data-testid={ `${index}-card-name` }
-                >
-                  {strDrink}
-                </p>
+                <Link to={ `/drinks/${idDrink}` }>
+                  <img
+                    data-testid={ `${index}-card-img` }
+                    src={ strDrinkThumb }
+                    alt={ strDrink }
+                  />
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {strDrink}
+                  </p>
+                </Link>
               </div>
             );
           })
