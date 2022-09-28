@@ -1,10 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import fetchDrinks from '../API/DrinksAPI';
 import RecipeAppContext from '../context/RecipeAppContext';
 
 const MAXLIST = 12;
 
 function DrinkRecipesCard() {
   let { recipes } = useContext(RecipeAppContext);
+  const { setRecipes } = useContext(RecipeAppContext);
+
+  const getDrinks = async () => {
+    const allRecipes = await fetchDrinks('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    setRecipes(allRecipes);
+  };
+
+  useEffect(() => {
+    getDrinks();
+  }, []);
+
   recipes = recipes.filter((_list, index) => index < MAXLIST);
 
   return (

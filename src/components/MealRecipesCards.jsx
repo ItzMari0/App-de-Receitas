@@ -1,10 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RecipeAppContext from '../context/RecipeAppContext';
+import fetchMeals from '../API/MealsAPI';
 
 const MAXLIST = 12;
 
 function MealRecipesCard() {
   let { recipes } = useContext(RecipeAppContext);
+  const { setRecipes } = useContext(RecipeAppContext);
+
+  const getMeals = async () => {
+    const allRecipes = await fetchMeals('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    setRecipes(allRecipes);
+  };
+
+  useEffect(() => {
+    getMeals();
+  }, []);
+
   recipes = recipes.filter((_list, index) => index < MAXLIST);
 
   return (

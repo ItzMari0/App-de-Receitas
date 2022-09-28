@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../components/Header';
-import MealRecipesCard from '../components/MealRecipesCards';
+import Recipes from '../components/Recipes';
 import Footer from '../components/Footer';
 
 function Meals() {
   return (
     <div>
       <Header />
-      <MealRecipesCard />
+      <Recipes />
       <Footer />
     </div>
   );
