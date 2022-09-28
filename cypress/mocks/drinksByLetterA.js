@@ -52,8 +52,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-09-07 21:42:09"
-      },
-      {
+    },
+    {
       "idDrink": "13501",
       "strDrink": "ABC",
       "strDrinkAlternate": null,
@@ -105,8 +105,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2016-08-31 19:32:08"
-      },
-      {
+    },
+    {
       "idDrink": "17225",
       "strDrink": "Ace",
       "strDrinkAlternate": null,
@@ -158,8 +158,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-09-07 22:05:06"
-      },
-      {
+    },
+    {
       "idDrink": "17837",
       "strDrink": "Adam",
       "strDrinkAlternate": null,
@@ -211,8 +211,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2016-09-02 11:29:29"
-      },
-      {
+    },
+    {
       "idDrink": "13938",
       "strDrink": "AT&T",
       "strDrinkAlternate": null,
@@ -264,8 +264,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-04-24 22:00:19"
-      },
-      {
+    },
+    {
       "idDrink": "14610",
       "strDrink": "ACID",
       "strDrinkAlternate": null,
@@ -317,8 +317,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2016-11-15 11:28:37"
-      },
-      {
+    },
+    {
       "idDrink": "17833",
       "strDrink": "A. J.",
       "strDrinkAlternate": null,
@@ -370,8 +370,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2016-09-02 11:16:58"
-      },
-      {
+    },
+    {
       "idDrink": "17839",
       "strDrink": "Affair",
       "strDrinkAlternate": null,
@@ -423,8 +423,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2016-09-01 10:05:34"
-      },
-      {
+    },
+    {
       "idDrink": "15106",
       "strDrink": "Apello",
       "strDrinkAlternate": null,
@@ -476,8 +476,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2016-07-18 22:13:35"
-      },
-      {
+    },
+    {
       "idDrink": "15266",
       "strDrink": "Avalon",
       "strDrinkAlternate": null,
@@ -529,8 +529,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-04-24 22:22:11"
-      },
-      {
+    },
+    {
       "idDrink": "17835",
       "strDrink": "Abilene",
       "strDrinkAlternate": null,
@@ -582,8 +582,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2016-04-29 09:44:25"
-      },
-      {
+    },
+    {
       "idDrink": "11023",
       "strDrink": "Almeria",
       "strDrinkAlternate": null,
@@ -635,8 +635,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-01-02 20:16:21"
-      },
-      {
+    },
+    {
       "idDrink": "17228",
       "strDrink": "Addison",
       "strDrinkAlternate": null,
@@ -688,8 +688,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-09-07 22:38:20"
-      },
-      {
+    },
+    {
       "idDrink": "17836",
       "strDrink": "Acapulco",
       "strDrinkAlternate": null,
@@ -741,8 +741,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2016-09-02 11:26:16"
-      },
-      {
+    },
+    {
       "idDrink": "17840",
       "strDrink": "Affinity",
       "strDrinkAlternate": null,
@@ -794,8 +794,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2017-09-07 21:44:05"
-      },
-      {
+    },
+    {
       "idDrink": "11046",
       "strDrink": "Applecar",
       "strDrinkAlternate": null,
@@ -847,8 +847,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-09-02 23:02:44"
-      },
-      {
+    },
+    {
       "idDrink": "17180",
       "strDrink": "Aviation",
       "strDrinkAlternate": null,
@@ -900,8 +900,8 @@ const drinksByLetterA = {
       "strImageAttribution": "Michael Styne https://www.flickr.com/photos/mstyne/",
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2016-11-04 09:55:28"
-      },
-      {
+    },
+    {
       "idDrink": "11014",
       "strDrink": "Alexander",
       "strDrinkAlternate": null,
@@ -953,8 +953,8 @@ const drinksByLetterA = {
       "strImageAttribution": "pxfuel.com",
       "strCreativeCommonsConfirmed": "Yes",
       "dateModified": "2016-11-04 09:50:39"
-      },
-      {
+    },
+    {
       "idDrink": "11020",
       "strDrink": "Algonquin",
       "strDrinkAlternate": null,
@@ -1006,8 +1006,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-01-02 20:11:13"
-      },
-      {
+    },
+    {
       "idDrink": "11021",
       "strDrink": "Allegheny",
       "strDrinkAlternate": null,
@@ -1059,8 +1059,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-01-02 20:12:14"
-      },
-      {
+    },
+    {
       "idDrink": "11055",
       "strDrink": "Artillery",
       "strDrinkAlternate": null,
@@ -1112,8 +1112,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-04-24 22:02:27"
-      },
-      {
+    },
+    {
       "idDrink": "12560",
       "strDrink": "Afterglow",
       "strDrinkAlternate": null,
@@ -1165,8 +1165,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2016-07-18 22:07:32"
-      },
-      {
+    },
+    {
       "idDrink": "12756",
       "strDrink": "Autodafé",
       "strDrinkAlternate": null,
@@ -1218,8 +1218,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2017-02-20 15:02:08"
-      },
-      {
+    },
+    {
       "idDrink": "13162",
       "strDrink": "Afternoon",
       "strDrinkAlternate": null,
@@ -1271,8 +1271,8 @@ const drinksByLetterA = {
       "strImageAttribution": null,
       "strCreativeCommonsConfirmed": "No",
       "dateModified": "2016-08-31 19:22:57"
-      },
-      {
+    },
+    {
       "idDrink": "15182",
       "strDrink": "After sex",
       "strDrinkAlternate": null,

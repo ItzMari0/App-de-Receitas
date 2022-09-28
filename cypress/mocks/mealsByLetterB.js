@@ -54,8 +54,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52792",
       "strMeal": "Bread and Butter Pudding",
       "strDrinkAlternate": null,
@@ -109,8 +109,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52803",
       "strMeal": "Beef Wellington",
       "strDrinkAlternate": null,
@@ -164,8 +164,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52807",
       "strMeal": "Baingan Bharta",
       "strDrinkAlternate": null,
@@ -219,8 +219,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52812",
       "strMeal": "Beef Brisket Pot Roast",
       "strDrinkAlternate": null,
@@ -274,8 +274,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52824",
       "strMeal": "Beef Sunday Roast",
       "strDrinkAlternate": null,
@@ -329,8 +329,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52826",
       "strMeal": "Braised Beef Chilli",
       "strDrinkAlternate": null,
@@ -384,8 +384,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52834",
       "strMeal": "Beef stroganoff",
       "strDrinkAlternate": null,
@@ -439,8 +439,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52842",
       "strMeal": "Broccoli & Stilton soup",
       "strDrinkAlternate": null,
@@ -494,8 +494,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52848",
       "strMeal": "Bean & Sausage Hotpot",
       "strDrinkAlternate": null,
@@ -549,8 +549,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52855",
       "strMeal": "Banana Pancakes",
       "strDrinkAlternate": null,
@@ -604,8 +604,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52873",
       "strMeal": "Beef Dumpling Stew",
       "strDrinkAlternate": null,
@@ -659,8 +659,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52874",
       "strMeal": "Beef and Mustard Pie",
       "strDrinkAlternate": null,
@@ -714,8 +714,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52878",
       "strMeal": "Beef and Oyster pie",
       "strDrinkAlternate": null,
@@ -769,8 +769,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52891",
       "strMeal": "Blackberry Fool",
       "strDrinkAlternate": null,
@@ -824,8 +824,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52894",
       "strMeal": "Battenberg Cake",
       "strDrinkAlternate": null,
@@ -879,8 +879,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52904",
       "strMeal": "Beef Bourguignon",
       "strDrinkAlternate": null,
@@ -934,8 +934,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52913",
       "strMeal": "Brie wrapped in prosciutto & brioche",
       "strDrinkAlternate": null,
@@ -989,8 +989,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52914",
       "strMeal": "Boulangère Potatoes",
       "strDrinkAlternate": null,
@@ -1044,8 +1044,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52928",
       "strMeal": "BeaverTails",
       "strDrinkAlternate": null,
@@ -1099,8 +1099,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52940",
       "strMeal": "Brown Stew Chicken",
       "strDrinkAlternate": null,
@@ -1154,8 +1154,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52952",
       "strMeal": "Beef Lo Mein",
       "strDrinkAlternate": null,
@@ -1209,8 +1209,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52959",
       "strMeal": "Baked salmon with fennel & tomatoes",
       "strDrinkAlternate": null,
@@ -1264,8 +1264,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52961",
       "strMeal": "Budino Di Ricotta",
       "strDrinkAlternate": null,
@@ -1319,8 +1319,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52965",
       "strMeal": "Breakfast Potatoes",
       "strDrinkAlternate": null,
@@ -1374,8 +1374,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52979",
       "strMeal": "Bitterballen (Dutch meatballs)",
       "strDrinkAlternate": null,
@@ -1429,8 +1429,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52995",
       "strMeal": "BBQ Pork Sloppy Joes",
       "strDrinkAlternate": null,
@@ -1484,8 +1484,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "52997",
       "strMeal": "Beef Banh Mi Bowls with Sriracha Mayo, Carrot & Pickled Cucumber",
       "strDrinkAlternate": null,
@@ -1539,8 +1539,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "53013",
       "strMeal": "Big Mac",
       "strDrinkAlternate": null,
@@ -1594,8 +1594,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "53018",
       "strMeal": "Bigos (Hunters Stew)",
       "strDrinkAlternate": null,
@@ -1649,8 +1649,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "53036",
       "strMeal": "Boxty Breakfast",
       "strDrinkAlternate": null,
@@ -1704,8 +1704,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "53053",
       "strMeal": "Beef Rendang",
       "strDrinkAlternate": null,
@@ -1759,8 +1759,8 @@ const mealsByLetterB = {
       "strImageSource": null,
       "strCreativeCommonsConfirmed": null,
       "dateModified": null
-      },
-      {
+    },
+    {
       "idMeal": "53060",
       "strMeal": "Burek",
       "strDrinkAlternate": null,
