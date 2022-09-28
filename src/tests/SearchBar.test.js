@@ -5,10 +5,10 @@ import oneMeal from '../../cypress/mocks/oneMeal';
 import oneDrink from '../../cypress/mocks/oneDrink';
 import mealsByIngredient from '../../cypress/mocks/mealsByIngredient';
 import ginDrinks from '../../cypress/mocks/ginDrinks';
-import drinksByLetterA from '../../cypress/mocks/drinksByLetterA';
-import mealsByLetterB from '../../cypress/mocks/mealsByLetterB';
 import emptyMeals from '../../cypress/mocks/emptyMeals';
 import emptyDrinks from '../../cypress/mocks/emptyDrinks';
+import drinks from '../../cypress/mocks/drinks';
+import meals from '../../cypress/mocks/meals';
 
 const SEARCH_ICON_ID = 'search-top-btn';
 const SEARCH_INPUT_ID = 'search-input';
@@ -130,7 +130,7 @@ describe('Search by first letter', () => {
   it('Show drinks search results', async () => {
     jest.spyOn(global, 'fetch')
       .mockImplementation(() => Promise.resolve({
-        json: () => Promise.resolve(drinksByLetterA),
+        json: () => Promise.resolve(drinks),
       }));
     renderWithRouter('/drinks');
     const searchBarIcon = screen.queryByTestId(SEARCH_ICON_ID);
@@ -150,7 +150,7 @@ describe('Search by first letter', () => {
   it('Show meals search results', async () => {
     jest.spyOn(global, 'fetch')
       .mockImplementation(() => Promise.resolve({
-        json: () => Promise.resolve(mealsByLetterB),
+        json: () => Promise.resolve(meals),
       }));
     renderWithRouter('/meals');
     const searchBarIcon = screen.queryByTestId(SEARCH_ICON_ID);
