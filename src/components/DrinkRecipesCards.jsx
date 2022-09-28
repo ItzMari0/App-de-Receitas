@@ -24,6 +24,12 @@ function DrinkRecipesCard() {
     categoryFetch();
   }, []);
 
+  const handleCategoryFilter = async ({ target }) => {
+    const { value } = target;
+    const filteredRecipes = (await fetchDrinks(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`));
+    setRecipes(filteredRecipes.filter((_list, index) => index < MAXLIST));
+  };
+
   recipes = recipes.filter((_list, index) => index < MAXLIST);
 
   return (
@@ -38,7 +44,7 @@ function DrinkRecipesCard() {
               key={ index }
               value={ strCategory }
               data-testid={ `${strCategory}-category-filter` }
-              // onClick={ }
+              onClick={ handleCategoryFilter }
             >
               {strCategory}
             </button>
