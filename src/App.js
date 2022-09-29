@@ -6,8 +6,8 @@ import Drinks from './pages/Drinks';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
-import MealRecipe from './pages/MealRecipe';
-import DrinkRecipe from './pages/DrinkRecipe';
+// import MealRecipe from './pages/MealRecipe';
+// import DrinkRecipe from './pages/DrinkRecipe';
 import RecipeAppProvider from './context/RecipeAppProvider';
 import RecipeDetails from './components/RecipeDetails';
 
