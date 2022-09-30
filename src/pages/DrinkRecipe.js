@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import fetchDrinks from '../API/MealsAPI';
+import fetchDrinks from '../API/DrinksAPI';
 
 function DrinkRecipe() {
   const { id } = useParams();
@@ -9,6 +9,7 @@ function DrinkRecipe() {
   const drinkRecipeDetail = async () => {
     setDrink(await fetchDrinks(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`));
   };
+  console.log(drink);
 
   useEffect(() => {
     drinkRecipeDetail();
@@ -27,54 +28,43 @@ function DrinkRecipe() {
     });
     drinkObjectEntries.forEach((chave) => {
       if (chave[0].includes('Measure') && chave[1] !== null) {
-        measures.push(key[1]);
+        measures.push(chave[1]);
       }
     });
   }
 
-  const iandm = ingredients.map((e, i) => `${e}: ${measures[i]}`);
+  const ingredientsWithMeasure = ingredients.map((e, i) => `${e}: ${measures[i]}`);
 
   return (
     <div>
-      {drink.map((drinkRecipe, index) => {
-        const { strDrink, strCategory, strDrinkThumb } = drinkRecipe;
+      {drink.map((drinkRecipe, i) => {
+        const { strDrink, strAlcoholic, strDrinkThumb } = drinkRecipe;
         return (
-          <div key={ index }>
+          <div key={ i }>
             <img
               data-testid="recipe-photo"
               src={ strDrinkThumb }
               alt={ strDrink }
             />
             <h1 data-testid="recipe-title">{ strDrink }</h1>
-            <h2 data-testid="recipe-category">{ strCategory }</h2>
+            <h2 data-testid="recipe-category">{ strAlcoholic }</h2>
           </div>
         );
       })}
       <h4>Ingredients</h4>
-      {iandm.map((ingredient, index) => (
+      {ingredientsWithMeasure.map((ingredient, i) => (
         <p
-          data-testid={ `${index}-ingredient-name-and-measure` }
-          key={ index }
+          data-testid={ `${i}-ingredient-name-and-measure` }
+          key={ i }
         >
           {ingredient}
         </p>))}
-      { drink.map((drinkRecipe, index) => {
-        const { strYoutube, strInstructions } = drinkRecipe;
+      { drink.map((drinkRecipe, i) => {
+        const { strInstructions } = drinkRecipe;
         return (
-          <div key={ index }>
+          <div key={ i }>
             <h4>Instructions</h4>
             <p data-testid="instructions">{ strInstructions}</p>
-            <iframe
-              data-testid="video"
-              width="300"
-              height="200"
-              src={ strYoutube.replace('watch?v=', 'embed/') }
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay;
-              clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
           </div>
         );
       })}

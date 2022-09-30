@@ -32,7 +32,7 @@ function MealRecipe() {
     });
   }
 
-  const iandm = ingredients.map((e, i) => `${e}: ${measures[i]}`);
+  const ingredientsWithMeasure = ingredients.map((e, i) => `${e}: ${measures[i]}`);
 
   return (
     <div>
@@ -52,7 +52,7 @@ function MealRecipe() {
       })}
 
       <h4>Ingredients</h4>
-      { iandm.map((ingredient, index) => (
+      { ingredientsWithMeasure.map((ingredient, index) => (
         <p
           key={ index }
           data-testid={ `${index}-ingredient-name-and-measure` }
