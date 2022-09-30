@@ -40,13 +40,13 @@ function MealRecipesCard() {
   return (
     <main>
       <div>
-        {mealCategory.map((categoryList, index) => {
+        {mealCategory.map((categoryList) => {
           const { strCategory } = categoryList;
           return (
             <button
               type="button"
               name="category"
-              key={ index }
+              key={ strCategory }
               value={ strCategory }
               data-testid={ `${strCategory}-category-filter` }
               onClick={ toggleFilter ? handleCategoryFilter : getMeals }

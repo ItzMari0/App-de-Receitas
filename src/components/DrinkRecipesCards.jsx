@@ -22,6 +22,7 @@ function DrinkRecipesCard() {
     const categories = (await fetchDrinks('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'));
     setDrinkCategory(categories.filter((_category, index) => index < MAXCATEGORY));
   };
+
   useEffect(() => {
     getDrinks();
     categoryFetch();
@@ -39,13 +40,13 @@ function DrinkRecipesCard() {
   return (
     <main>
       <div>
-        {drinkCategory.map((categoryList, index) => {
+        {drinkCategory.map((categoryList) => {
           const { strCategory } = categoryList;
           return (
             <button
               type="button"
               name="category"
-              key={ index }
+              key={ strCategory }
               value={ strCategory }
               data-testid={ `${strCategory}-category-filter` }
               onClick={ toggleFilter ? handleCategoryFilter : getDrinks }
