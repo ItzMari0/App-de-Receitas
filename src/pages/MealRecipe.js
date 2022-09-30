@@ -9,10 +9,30 @@ function MealRecipe() {
   const mealRecipeDetail = async () => {
     setMeal(await fetchMeals(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`));
   };
+
   useEffect(() => {
     mealRecipeDetail();
   }, []);
-  console.log(Object.keys(meal).filter((m) => m.includes('strIngredient')));
+
+  const mealObject = Object.values(meal);
+  const mealObjectEntries = mealObject.length > 0 && Object.entries(mealObject[0]);
+  const ingredients = [];
+  const measures = [];
+
+  if (mealObject.length > 0) {
+    mealObjectEntries.forEach((chave) => {
+      if (chave[0].includes('Ingredient') && chave[1] !== '') {
+        ingredients.push(chave[1]);
+      }
+    });
+    mealObjectEntries.forEach((chave) => {
+      if (chave[0].includes('Measure') && chave[1] !== ' ') {
+        measures.push(chave[1]);
+      }
+    });
+  }
+
+  const iandm = ingredients.map((e, i) => `${e}: ${measures[i]}`);
 
   return (
     <div>
@@ -31,11 +51,20 @@ function MealRecipe() {
         );
       })}
 
+      <h4>Ingredients</h4>
+      { iandm.map((ingredient, index) => (
+        <p
+          key={ index }
+          data-testid={ `${index}-ingredient-name-and-measure` }
+        >
+          { ingredient }
+        </p>
+      ))}
+
       { meal.map((mealRecipe, index) => {
         const { strYoutube, strInstructions } = mealRecipe;
         return (
           <div key={ index }>
-            <p />
             <h4>Instructions</h4>
             <p data-testid="instructions">{ strInstructions}</p>
             <iframe
@@ -52,9 +81,7 @@ function MealRecipe() {
           </div>
         );
       })}
-
     </div>
   );
 }
-
 export default MealRecipe;
