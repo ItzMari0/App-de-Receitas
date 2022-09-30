@@ -10,4 +10,8 @@ const userDrinksToken = (token) => {
   localStorage.setItem('drinksToken', token);
 };
 
-export { userEmail, userMealsToken, userDrinksToken };
+const doneRecipeToken = (token) => {
+  localStorage.setItem('doneRecipes', token);
+};
+
+export { userEmail, userMealsToken, userDrinksToken, doneRecipeToken };
