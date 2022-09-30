@@ -30,12 +30,12 @@ function MealRecipe() {
 
   if (mealObject.length > 0) {
     mealObjectEntries.forEach((chave) => {
-      if (chave[0].includes('Ingredient') && chave[1] !== '') {
+      if (chave[0].includes('Ingredient') && chave[1] !== '' && chave[1] !== null) {
         ingredients.push(chave[1]);
       }
     });
     mealObjectEntries.forEach((chave) => {
-      if (chave[0].includes('Measure') && chave[1] !== ' ') {
+      if (chave[0].includes('Measure') && chave[1] !== ' ' && chave[1] !== null) {
         measures.push(chave[1]);
       }
     });

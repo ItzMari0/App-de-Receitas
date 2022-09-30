@@ -31,12 +31,12 @@ function DrinkRecipe() {
 
   if (drinkObject.length > 0) {
     drinkObjectEntries.forEach((chave) => {
-      if (chave[0].includes('Ingredient') && chave[1] !== null) {
+      if (chave[0].includes('Ingredient') && chave[1] !== null && chave[1] !== '') {
         ingredients.push(chave[1]);
       }
     });
     drinkObjectEntries.forEach((chave) => {
-      if (chave[0].includes('Measure') && chave[1] !== null) {
+      if (chave[0].includes('Measure') && chave[1] !== null && chave[1] !== ' ') {
         measures.push(chave[1]);
       }
     });
