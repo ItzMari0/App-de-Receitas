@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchDrinks from '../API/DrinksAPI';
+import MealRecommendation from '../components/MealRecommendation';
+import '../styles/recipesImages.css';
+import '../styles/footer.css';
 
 function DrinkRecipe() {
   const { id } = useParams();
   const [drink, setDrink] = useState([]);
+  const [isHidden, setIsHidden] = useState(true);
 
   const drinkRecipeDetail = async () => {
     setDrink(await fetchDrinks(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`));
@@ -13,6 +17,11 @@ function DrinkRecipe() {
 
   useEffect(() => {
     drinkRecipeDetail();
+    if (localStorage.getItem('doneRecipes') !== null) {
+      setIsHidden(false);
+    } else {
+      setIsHidden(true);
+    }
   }, []);
 
   const drinkObject = Object.values(drink);
@@ -42,6 +51,7 @@ function DrinkRecipe() {
         return (
           <div key={ i }>
             <img
+              className="recipe-main"
               data-testid="recipe-photo"
               src={ strDrinkThumb }
               alt={ strDrink }
@@ -68,7 +78,17 @@ function DrinkRecipe() {
           </div>
         );
       })}
-
+      <MealRecommendation />
+      { isHidden && (
+        <button
+          style={ { position: 'fixed', bottom: '0' } }
+          type="button"
+          data-testid="start-recipe-btn"
+          // onClick={}
+        >
+          Start Recipe
+        </button>
+      )}
     </div>
   );
 }

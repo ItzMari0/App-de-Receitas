@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RecipeAppContext from '../context/RecipeAppContext';
 import fetchMeals from '../API/MealsAPI';
+import '../styles/recipesImages.css';
 
 const MAXLIST = 12;
 const MAXCATEGORY = 5;
@@ -76,6 +77,7 @@ function MealRecipesCard() {
               >
                 <Link to={ `/meals/${idMeal}` }>
                   <img
+                    className="recipes-images"
                     data-testid={ `${index}-card-img` }
                     src={ strMealThumb }
                     alt={ strMeal }

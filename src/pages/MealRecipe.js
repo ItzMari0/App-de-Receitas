@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchMeals from '../API/MealsAPI';
+import DrinkRecommendation from '../components/DrinkRecommendation';
+import '../styles/recipesImages.css';
+import '../styles/footer.css';
 
 function MealRecipe() {
   const { id } = useParams();
   const [meal, setMeal] = useState([]);
+  const [isHidden, setIsHidden] = useState(true);
 
   const mealRecipeDetail = async () => {
     setMeal(await fetchMeals(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`));
@@ -12,6 +16,11 @@ function MealRecipe() {
 
   useEffect(() => {
     mealRecipeDetail();
+    if (localStorage.getItem('doneRecipes') !== null) {
+      setIsHidden(false);
+    } else {
+      setIsHidden(true);
+    }
   }, []);
 
   const mealObject = Object.values(meal);
@@ -41,6 +50,7 @@ function MealRecipe() {
         return (
           <div key={ index }>
             <img
+              className="recipes-main"
               data-testid="recipe-photo"
               src={ strMealThumb }
               alt={ strMeal }
@@ -81,6 +91,17 @@ function MealRecipe() {
           </div>
         );
       })}
+      <DrinkRecommendation />
+      { isHidden && (
+        <button
+          style={ { position: 'fixed', bottom: '0' } }
+          type="button"
+          data-testid="start-recipe-btn"
+          // onClick={}
+        >
+          Start Recipe
+        </button>
+      )}
     </div>
   );
 }
