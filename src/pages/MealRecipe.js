@@ -6,7 +6,7 @@ import '../styles/recipesImages.css';
 import '../styles/footer.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import { favoriteRecipes } from '../helpers/localStorage';
+// import { favoriteRecipes } from '../helpers/localStorage';
 
 const copy = require('clipboard-copy');
 
@@ -42,18 +42,18 @@ function MealRecipe() {
     setIsCopied((prevState) => !prevState);
   };
 
-  const handleFavoriteClick = () => {
-    const favorite = meal.find((mealRecipe) => mealRecipe);
-    const addFavorite = [localStorage.getItem('favoriteRecipes'),
-      { id: favorite.idMeal,
-        type: 'meal',
-        nationality: favorite.strArea,
-        category: favorite.strCategory,
-        name: favorite.strMeal,
-        image: favorite.strMealThumb,
-      }];
-    favoriteRecipes(addFavorite);
-  };
+  // const handleFavoriteClick = () => {
+  //   const favorite = meal.find((mealRecipe) => mealRecipe);
+  //   const addFavorite = [localStorage.getItem('favoriteRecipes'),
+  //     { id: favorite.idMeal,
+  //       type: 'meal',
+  //       nationality: favorite.strArea,
+  //       category: favorite.strCategory,
+  //       name: favorite.strMeal,
+  //       image: favorite.strMealThumb,
+  //     }];
+  //   favoriteRecipes(addFavorite);
+  // };
 
   const mealObject = Object.values(meal);
   const mealObjectEntries = mealObject.length > 0 && Object.entries(mealObject[0]);
@@ -135,7 +135,7 @@ function MealRecipe() {
           data-testid="favorite-btn"
           src={ whiteHeartIcon }
           alt="share"
-          onClick={ handleFavoriteClick }
+        //  onClick={ handleFavoriteClick }
         />
         {isCopied && <p>Link copied!</p>}
       </div>
