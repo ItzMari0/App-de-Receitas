@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import fetchDrinks from '../API/DrinksAPI';
 import MealRecommendation from '../components/MealRecommendation';
 import '../styles/recipesImages.css';
 import '../styles/footer.css';
+import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+
+const copy = require('clipboard-copy');
 
 function DrinkRecipe() {
+  const history = useHistory();
+  const location = useLocation();
   const { id } = useParams();
   const [drink, setDrink] = useState([]);
   const [isHidden, setIsHidden] = useState(true);
+  const [continueRecipe, setContinueRecipe] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const drinkRecipeDetail = async () => {
     setDrink(await fetchDrinks(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`));
   };
-  console.log(drink);
 
   useEffect(() => {
     drinkRecipeDetail();
@@ -22,21 +29,30 @@ function DrinkRecipe() {
     } else {
       setIsHidden(true);
     }
+    if (localStorage.getItem('inProgressRecipes') !== null) {
+      setContinueRecipe(true);
+    } else {
+      setContinueRecipe(false);
+    }
   }, []);
+
+  const handleShareClick = () => {
+    copy(`http://localhost:3000${location.pathname}`);
+    setIsCopied((prevState) => !prevState);
+  };
 
   const drinkObject = Object.values(drink);
   const drinkObjectEntries = drinkObject.length > 0 && Object.entries(drinkObject[0]);
   const ingredients = [];
   const measures = [];
-
   if (drinkObject.length > 0) {
     drinkObjectEntries.forEach((chave) => {
-      if (chave[0].includes('Ingredient') && chave[1] !== null && chave[1] !== '') {
+      if (chave[0].includes('Ingredient') && chave[1] !== null) {
         ingredients.push(chave[1]);
       }
     });
     drinkObjectEntries.forEach((chave) => {
-      if (chave[0].includes('Measure') && chave[1] !== null && chave[1] !== ' ') {
+      if (chave[0].includes('Measure') && chave[1] !== null) {
         measures.push(chave[1]);
       }
     });
@@ -78,15 +94,30 @@ function DrinkRecipe() {
           </div>
         );
       })}
+      <input
+        type="image"
+        data-testid="share-btn"
+        src={ shareIcon }
+        alt="share"
+        onClick={ handleShareClick }
+      />
+      <input
+        type="image"
+        data-testid="favorite-btn"
+        src={ whiteHeartIcon }
+        alt="share"
+        // onClick={ handleShareClick }
+      />
+      {isCopied && <p>Link copied!</p>}
       <MealRecommendation />
       { isHidden && (
         <button
           style={ { position: 'fixed', bottom: '0' } }
           type="button"
           data-testid="start-recipe-btn"
-          // onClick={}
+          onClick={ () => { history.push(`/drinks/${id}/in-progress`); } }
         >
-          Start Recipe
+          {continueRecipe ? 'Continue Recipe' : 'Start Recipe'}
         </button>
       )}
     </div>
