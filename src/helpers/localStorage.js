@@ -14,4 +14,13 @@ const doneRecipeToken = (token) => {
   localStorage.setItem('doneRecipes', token);
 };
 
-export { userEmail, userMealsToken, userDrinksToken, doneRecipeToken };
+const inProgressRecipes = (token) => {
+  localStorage.setItem('inProgressRecipes', token);
+};
+
+const favoriteRecipes = (token) => {
+  localStorage.setItem('favoriteRecipes', JSON.stringify(token));
+};
+
+export { userEmail, userMealsToken, userDrinksToken,
+  doneRecipeToken, inProgressRecipes, favoriteRecipes };
