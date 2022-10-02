@@ -22,5 +22,11 @@ const favoriteRecipes = (token) => {
   localStorage.setItem('favoriteRecipes', JSON.stringify(token));
 };
 
+const getStorageFavoriteList = (id) => {
+  const favoriteList = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  return favoriteList.some((recipe) => recipe.id === id);
+};
+
 export { userEmail, userMealsToken, userDrinksToken,
-  doneRecipeToken, inProgressRecipes, favoriteRecipes };
+  doneRecipeToken, inProgressRecipes, favoriteRecipes,
+  getStorageFavoriteList };

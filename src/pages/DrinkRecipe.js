@@ -4,10 +4,12 @@ import fetchDrinks from '../API/DrinksAPI';
 import MealRecommendation from '../components/MealRecommendation';
 import '../styles/recipesImages.css';
 import '../styles/footer.css';
+import '../styles/Icons.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import RecipeAppContext from '../context/RecipeAppContext';
-import { favoriteRecipes } from '../helpers/localStorage';
+import { favoriteRecipes, getStorageFavoriteList } from '../helpers/localStorage';
 
 const copy = require('clipboard-copy');
 
@@ -19,6 +21,7 @@ function DrinkRecipe() {
   const [isHidden, setIsHidden] = useState(true);
   const [continueRecipe, setContinueRecipe] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [heartColor, setHeartColor] = useState(true);
   const { favorites, setFavorites } = useContext(RecipeAppContext);
 
   const drinkRecipeDetail = async () => {
@@ -36,6 +39,10 @@ function DrinkRecipe() {
       setContinueRecipe(true);
     } else {
       setContinueRecipe(false);
+    }
+    if (localStorage.getItem('favoriteRecipes') !== null
+      && getStorageFavoriteList(id) === true) {
+      setHeartColor(false);
     }
   }, []);
 
@@ -56,7 +63,14 @@ function DrinkRecipe() {
       name: strDrink,
       image: strDrinkThumb,
     };
-    setFavorites([...favorites, addFavorite]);
+    if (getStorageFavoriteList(idDrink) === false) {
+      setFavorites([...favorites, addFavorite]);
+      setHeartColor(false);
+    // if (getStorageFavoriteList(idDrink) === true) {
+    } else {
+      setFavorites(favorites.filter((recipe) => recipe.id !== idDrink));
+      setHeartColor(true);
+    }
   };
 
   useEffect(() => {
@@ -117,24 +131,23 @@ function DrinkRecipe() {
           </div>
         );
       })}
-      <div>
-        <input
-          type="image"
-          data-testid="share-btn"
-          src={ shareIcon }
-          alt="share"
-          onClick={ handleShareClick }
-        />
-        {isCopied && <p>Link copied!</p>}
-        <input
-          type="image"
-          data-testid="favorite-btn"
-          src={ whiteHeartIcon }
-          alt="share"
-          onClick={ handleFavoriteClick }
-        />
-        {isCopied && <p>Link copied!</p>}
-      </div>
+      <input
+        type="image"
+        data-testid="share-btn"
+        className="share"
+        src={ shareIcon }
+        alt="share"
+        onClick={ handleShareClick }
+      />
+      <input
+        type="image"
+        data-testid="favorite-btn"
+        className="favorite"
+        src={ heartColor ? whiteHeartIcon : blackHeartIcon }
+        alt="favorite"
+        onClick={ handleFavoriteClick }
+      />
+      {isCopied && <p>Link copied!</p>}
       <MealRecommendation />
       { isHidden && (
         <button

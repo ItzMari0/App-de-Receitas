@@ -25,7 +25,8 @@ function RecipeAppProvider({ children }) {
       recipes,
       setRecipes,
       favorites,
-      setFavorites],
+      setFavorites,
+    ],
   );
 
   return (
