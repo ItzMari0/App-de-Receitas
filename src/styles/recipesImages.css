@@ -1,6 +1,8 @@
 .recipes-images {
-  height: 180px;
-  width: 180px;
+  height: 160px;
+  padding-left: 5px;
+  padding-top: 10px;
+  width: 160px;
 }
 
 .recipes-main {
