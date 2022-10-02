@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import fetchMeals from '../API/MealsAPI';
 import DrinkRecommendation from '../components/DrinkRecommendation';
@@ -6,7 +6,9 @@ import '../styles/recipesImages.css';
 import '../styles/footer.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-// import { favoriteRecipes } from '../helpers/localStorage';
+// import blackHeartIcon from '../images/blackHeartIcon.svg';
+import RecipeAppContext from '../context/RecipeAppContext';
+import { favoriteRecipes } from '../helpers/localStorage';
 
 const copy = require('clipboard-copy');
 
@@ -18,6 +20,7 @@ function MealRecipe() {
   const [isHidden, setIsHidden] = useState(true);
   const [continueRecipe, setContinueRecipe] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const { favorites, setFavorites } = useContext(RecipeAppContext);
 
   const mealRecipeDetail = async () => {
     setMeal(await fetchMeals(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`));
@@ -42,18 +45,24 @@ function MealRecipe() {
     setIsCopied((prevState) => !prevState);
   };
 
-  // const handleFavoriteClick = () => {
-  //   const favorite = meal.find((mealRecipe) => mealRecipe);
-  //   const addFavorite = [localStorage.getItem('favoriteRecipes'),
-  //     { id: favorite.idMeal,
-  //       type: 'meal',
-  //       nationality: favorite.strArea,
-  //       category: favorite.strCategory,
-  //       name: favorite.strMeal,
-  //       image: favorite.strMealThumb,
-  //     }];
-  //   favoriteRecipes(addFavorite);
-  // };
+  const handleFavoriteClick = () => {
+    const mealRecipe = meal.find((recipe) => recipe);
+    const { idMeal, strMeal, strCategory, strArea, strMealThumb } = mealRecipe;
+    const addFavorite = {
+      id: idMeal,
+      type: 'meal',
+      nationality: strArea,
+      category: strCategory,
+      alcoholicOrNot: '',
+      name: strMeal,
+      image: strMealThumb,
+    };
+    setFavorites([...favorites, addFavorite]);
+  };
+
+  useEffect(() => {
+    favoriteRecipes(favorites);
+  }, [favorites]);
 
   const mealObject = Object.values(meal);
   const mealObjectEntries = mealObject.length > 0 && Object.entries(mealObject[0]);
@@ -135,7 +144,7 @@ function MealRecipe() {
           data-testid="favorite-btn"
           src={ whiteHeartIcon }
           alt="share"
-        //  onClick={ handleFavoriteClick }
+          onClick={ handleFavoriteClick }
         />
         {isCopied && <p>Link copied!</p>}
       </div>

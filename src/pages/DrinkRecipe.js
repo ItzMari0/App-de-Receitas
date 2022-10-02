@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import fetchDrinks from '../API/DrinksAPI';
 import MealRecommendation from '../components/MealRecommendation';
@@ -6,6 +6,8 @@ import '../styles/recipesImages.css';
 import '../styles/footer.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import RecipeAppContext from '../context/RecipeAppContext';
+import { favoriteRecipes } from '../helpers/localStorage';
 
 const copy = require('clipboard-copy');
 
@@ -17,6 +19,7 @@ function DrinkRecipe() {
   const [isHidden, setIsHidden] = useState(true);
   const [continueRecipe, setContinueRecipe] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const { favorites, setFavorites } = useContext(RecipeAppContext);
 
   const drinkRecipeDetail = async () => {
     setDrink(await fetchDrinks(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`));
@@ -41,10 +44,30 @@ function DrinkRecipe() {
     setIsCopied((prevState) => !prevState);
   };
 
+  const handleFavoriteClick = () => {
+    const drinkRecipe = drink.find((recipe) => recipe);
+    const { idDrink, strDrink, strCategory, strAlcoholic, strDrinkThumb } = drinkRecipe;
+    const addFavorite = {
+      id: idDrink,
+      type: 'drink',
+      nationality: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+    };
+    setFavorites([...favorites, addFavorite]);
+  };
+
+  useEffect(() => {
+    favoriteRecipes(favorites);
+  }, [favorites]);
+
   const drinkObject = Object.values(drink);
   const drinkObjectEntries = drinkObject.length > 0 && Object.entries(drinkObject[0]);
   const ingredients = [];
   const measures = [];
+
   if (drinkObject.length > 0) {
     drinkObjectEntries.forEach((chave) => {
       if (chave[0].includes('Ingredient') && chave[1] !== null) {
@@ -67,7 +90,7 @@ function DrinkRecipe() {
         return (
           <div key={ i }>
             <img
-              className="recipe-main"
+              className="recipes-main"
               data-testid="recipe-photo"
               src={ strDrinkThumb }
               alt={ strDrink }
@@ -94,21 +117,24 @@ function DrinkRecipe() {
           </div>
         );
       })}
-      <input
-        type="image"
-        data-testid="share-btn"
-        src={ shareIcon }
-        alt="share"
-        onClick={ handleShareClick }
-      />
-      <input
-        type="image"
-        data-testid="favorite-btn"
-        src={ whiteHeartIcon }
-        alt="share"
-        // onClick={ handleShareClick }
-      />
-      {isCopied && <p>Link copied!</p>}
+      <div>
+        <input
+          type="image"
+          data-testid="share-btn"
+          src={ shareIcon }
+          alt="share"
+          onClick={ handleShareClick }
+        />
+        {isCopied && <p>Link copied!</p>}
+        <input
+          type="image"
+          data-testid="favorite-btn"
+          src={ whiteHeartIcon }
+          alt="share"
+          onClick={ handleFavoriteClick }
+        />
+        {isCopied && <p>Link copied!</p>}
+      </div>
       <MealRecommendation />
       { isHidden && (
         <button
