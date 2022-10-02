@@ -6,6 +6,7 @@ function RecipeAppProvider({ children }) {
   const [login, setLogin] = useState({ email: '', password: '' });
   const [disabled, setDisabled] = useState(true);
   const [recipes, setRecipes] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   const recipeAppStates = useMemo(
     () => ({ login,
@@ -14,8 +15,17 @@ function RecipeAppProvider({ children }) {
       setDisabled,
       recipes,
       setRecipes,
+      favorites,
+      setFavorites,
     }),
-    [login, setLogin, disabled, setDisabled, recipes, setRecipes],
+    [login,
+      setLogin,
+      disabled,
+      setDisabled,
+      recipes,
+      setRecipes,
+      favorites,
+      setFavorites],
   );
 
   return (
