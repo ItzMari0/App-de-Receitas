@@ -43,6 +43,8 @@ function MealRecipe() {
     if (localStorage.getItem('favoriteRecipes') !== null
       && getStorageFavoriteList(id) === true) {
       setHeartColor(false);
+    } else {
+      setHeartColor(true);
     }
   }, []);
 
