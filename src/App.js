@@ -6,8 +6,7 @@ import Drinks from './pages/Drinks';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
-import MealInProgress from './pages/MealInProgress';
-import DrinkInProgress from './pages/DrinkInProgress';
+import RecipeInProgress from './pages/RecipeInProgress';
 import RecipeAppProvider from './context/RecipeAppProvider';
 import RecipeDetails from './components/RecipeDetails';
 
@@ -31,8 +30,8 @@ function App() {
           path="/drinks/:id"
           render={ (props) => <RecipeDetails { ...props } /> }
         />
-        <Route exact path="/meals/:id/in-progress" component={ MealInProgress } />
-        <Route exact path="/drinks/:id/in-progress" component={ DrinkInProgress } />
+        <Route exact path="/meals/:id/in-progress" component={ RecipeInProgress } />
+        <Route exact path="/drinks/:id/in-progress" component={ RecipeInProgress } />
       </RecipeAppProvider>
     </Switch>
   );
