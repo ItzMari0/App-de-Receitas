@@ -71,7 +71,7 @@ function DrinkRecipe() {
       setHeartColor(false);
       favoriteRecipes(addRecipe);
     } else {
-      const filter = favorites.filter((recipe) => recipe.id !== idMeal);
+      const filter = favorites.filter((recipe) => recipe.id !== idDrink);
       setFavorites(filter);
       setHeartColor((prevState) => !prevState);
       favoriteRecipes(filter);
