@@ -43,6 +43,8 @@ function DrinkRecipe() {
     if (localStorage.getItem('favoriteRecipes') !== null
       && getStorageFavoriteList(id) === true) {
       setHeartColor(false);
+    } else {
+      setHeartColor(true);
     }
   }, []);
 
@@ -64,18 +66,17 @@ function DrinkRecipe() {
       image: strDrinkThumb,
     };
     if (getStorageFavoriteList(idDrink) === false) {
-      setFavorites([...favorites, addFavorite]);
+      const addRecipe = [...favorites, addFavorite];
+      setFavorites(addRecipe);
       setHeartColor(false);
-    // if (getStorageFavoriteList(idDrink) === true) {
+      favoriteRecipes(addRecipe);
     } else {
-      setFavorites(favorites.filter((recipe) => recipe.id !== idDrink));
-      setHeartColor(true);
+      const filter = favorites.filter((recipe) => recipe.id !== idDrink);
+      setFavorites(filter);
+      setHeartColor((prevState) => !prevState);
+      favoriteRecipes(filter);
     }
   };
-
-  useEffect(() => {
-    favoriteRecipes(favorites);
-  }, [favorites]);
 
   const drinkObject = Object.values(drink);
   const drinkObjectEntries = drinkObject.length > 0 && Object.entries(drinkObject[0]);

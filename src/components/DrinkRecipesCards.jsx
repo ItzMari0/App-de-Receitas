@@ -41,13 +41,13 @@ function DrinkRecipesCard() {
   return (
     <main>
       <div>
-        {drinkCategory.map((categoryList) => {
+        {drinkCategory.map((categoryList, index) => {
           const { strCategory } = categoryList;
           return (
             <button
               type="button"
               name="category"
-              key={ strCategory }
+              key={ index }
               value={ strCategory }
               data-testid={ `${strCategory}-category-filter` }
               onClick={ toggleFilter ? handleCategoryFilter : getDrinks }

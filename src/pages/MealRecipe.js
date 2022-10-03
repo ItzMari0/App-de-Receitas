@@ -43,6 +43,8 @@ function MealRecipe() {
     if (localStorage.getItem('favoriteRecipes') !== null
       && getStorageFavoriteList(id) === true) {
       setHeartColor(false);
+    } else {
+      setHeartColor(true);
     }
   }, []);
 
@@ -64,17 +66,17 @@ function MealRecipe() {
       image: strMealThumb,
     };
     if (getStorageFavoriteList(idMeal) === false) {
-      setFavorites([...favorites, addFavorite]);
+      const addRecipe = [...favorites, addFavorite];
+      setFavorites(addRecipe);
       setHeartColor(false);
+      favoriteRecipes(addRecipe);
     } else {
-      setFavorites(favorites.filter((recipe) => recipe.id !== idMeal));
+      const filter = favorites.filter((recipe) => recipe.id !== idMeal);
+      setFavorites(filter);
       setHeartColor((prevState) => !prevState);
+      favoriteRecipes(filter);
     }
   };
-
-  useEffect(() => {
-    favoriteRecipes(favorites);
-  }, [favorites]);
 
   const mealObject = Object.values(meal);
   const mealObjectEntries = mealObject.length > 0 && Object.entries(mealObject[0]);
