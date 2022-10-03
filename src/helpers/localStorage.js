@@ -23,7 +23,7 @@ const favoriteRecipes = (token) => {
 };
 
 const getStorageFavoriteList = (id) => {
-  const favoriteList = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const favoriteList = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
   return favoriteList.some((recipe) => recipe.id === id);
 };
 
