@@ -14,8 +14,9 @@ export default function DrinkRecipeInProgress() {
   const history = useHistory();
   const [drink, setDrink] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
-  // const [isBtnDisabled, setIsBtnDisabled] = useState(true);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   const [heartColor, setHeartColor] = useState(true);
+  const [usedIngredients, setUsedIngredients] = useState([]);
   const { favorites, setFavorites } = useContext(RecipeAppContext);
 
   const drinkRecipeDetail = async () => {
@@ -54,7 +55,7 @@ export default function DrinkRecipeInProgress() {
     const a = {
       name: ingredient,
       measure: measures[i],
-      isChecked: false,
+      // isChecked: false,
     };
     return a;
   });
@@ -89,9 +90,31 @@ export default function DrinkRecipeInProgress() {
     }
   };
 
-  // useEffect(() => {
-  //   favoriteRecipes(favorites);
-  // }, [favorites]);
+  const handleIngredientCheck = (ingr) => {
+    console.log(ingredientsWithMeasure.length);
+    const alreadyUsing = usedIngredients
+      .some((ingredient) => ingr.name === ingredient.name);
+    const removeIngredient = usedIngredients
+      .filter((ingredient) => ingr.name !== ingredient.name);
+    if (alreadyUsing === false) {
+      setUsedIngredients([...usedIngredients, ingr]);
+    } else {
+      setUsedIngredients(removeIngredient);
+    }
+  };
+
+  useEffect(() => {
+    console.log(usedIngredients, 'ingredientes usados');
+    console.log(usedIngredients.length, 'tamanho');
+    const allIngredientsChecked = usedIngredients.length > 1
+    && usedIngredients.length >= ingredientsWithMeasure.length;
+    if (allIngredientsChecked) {
+      setIsBtnDisabled(false);
+      console.log('oi');
+    } else {
+      setIsBtnDisabled(true);
+    }
+  }, [usedIngredients]);
 
   const handleFinishRcpBtn = () => {
     history.push('/done-recipes');
@@ -121,7 +144,10 @@ export default function DrinkRecipeInProgress() {
           data-testid={ `${index}-ingredient-step` }
           key={ ingredient }
         >
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={ () => handleIngredientCheck(ingredient) }
+          />
           { `${ingredient.name}: ${ingredient.measure}` }
         </label>
       ))}
@@ -153,7 +179,7 @@ export default function DrinkRecipeInProgress() {
         type="button"
         data-testid="finish-recipe-btn"
         onClick={ handleFinishRcpBtn }
-        disabled
+        disabled={ isBtnDisabled }
       >
         FINISH RECIPE
       </button>

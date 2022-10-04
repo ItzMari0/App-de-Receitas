@@ -15,7 +15,7 @@ const doneRecipeToken = (token) => {
 };
 
 const inProgressRecipes = (token) => {
-  localStorage.setItem('inProgressRecipes', token);
+  localStorage.setItem('inProgressRecipes', JSON.stringify(token));
 };
 
 const favoriteRecipes = (token) => {
