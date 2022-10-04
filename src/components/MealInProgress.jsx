@@ -14,8 +14,9 @@ export default function MealRecipeInProgress() {
   const history = useHistory();
   const [meal, setMeal] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
-  // const [isBtnDisabled, setIsBtnDisabled] = useState(true);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   const [heartColor, setHeartColor] = useState(true);
+  const [usedIngredients, setUsedIngredients] = useState([]);
   const { favorites, setFavorites } = useContext(RecipeAppContext);
 
   const mealRecipeDetail = async () => {
@@ -50,15 +51,13 @@ export default function MealRecipeInProgress() {
     });
   }
 
-  // const ingredientsWithMeasure = ingredients.map((e, i) => `${e}: ${measures[i]}`);
-
   const ingredientsWithMeasure = ingredients.map((ingredient, i) => {
-    const a = {
+    const ingredientObject = {
       name: ingredient,
       measure: measures[i],
-      isChecked: false,
+      // isChecked: false,
     };
-    return a;
+    return ingredientObject;
   });
 
   const handleShareClick = () => {
@@ -91,9 +90,31 @@ export default function MealRecipeInProgress() {
     }
   };
 
-  // useEffect(() => {
-  //   favoriteRecipes(favorites);
-  // }, [favorites]);
+  const handleIngredientCheck = (ingr) => {
+    console.log(ingredientsWithMeasure.length);
+    const alreadyUsing = usedIngredients
+      .some((ingredient) => ingr.name === ingredient.name);
+    const removeIngredient = usedIngredients
+      .filter((ingredient) => ingr.name !== ingredient.name);
+    if (alreadyUsing === false) {
+      setUsedIngredients([...usedIngredients, ingr]);
+    } else {
+      setUsedIngredients(removeIngredient);
+    }
+  };
+
+  useEffect(() => {
+    console.log(usedIngredients, 'ingredientes usados');
+    console.log(usedIngredients.length, 'tamanho');
+    const allIngredientsChecked = usedIngredients.length > 1
+    && usedIngredients.length >= ingredientsWithMeasure.length;
+    if (allIngredientsChecked) {
+      setIsBtnDisabled(false);
+      console.log('oi');
+    } else {
+      setIsBtnDisabled(true);
+    }
+  }, [usedIngredients]);
 
   const handleFinishRcpBtn = () => {
     history.push('/done-recipes');
@@ -125,6 +146,7 @@ export default function MealRecipeInProgress() {
         >
           <input
             type="checkbox"
+            onChange={ () => handleIngredientCheck(ingredient) }
           />
           { `${ingredient.name}: ${ingredient.measure}` }
         </label>
@@ -169,7 +191,7 @@ export default function MealRecipeInProgress() {
         type="button"
         data-testid="finish-recipe-btn"
         onClick={ handleFinishRcpBtn }
-        disabled
+        disabled={ isBtnDisabled }
       >
         FINISH RECIPE
       </button>
