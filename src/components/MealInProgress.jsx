@@ -23,8 +23,21 @@ export default function MealRecipeInProgress() {
     setMeal(await fetchMeals(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`));
   };
 
+  const setLocalStorage = () => {
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    if (!inProgressList.meals) {
+      const firstEntry = {
+        meals: {
+          [id]: [],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(firstEntry));
+    }
+  };
+
   useEffect(() => {
     mealRecipeDetail();
+    setLocalStorage();
     if (localStorage.getItem('favoriteRecipes') !== null
     && getStorageFavoriteList(id) === true) {
       setHeartColor(false);
@@ -55,7 +68,6 @@ export default function MealRecipeInProgress() {
     const ingredientObject = {
       name: ingredient,
       measure: measures[i],
-      // isChecked: false,
     };
     return ingredientObject;
   });
@@ -91,26 +103,37 @@ export default function MealRecipeInProgress() {
   };
 
   const handleIngredientCheck = (ingr) => {
-    console.log(ingredientsWithMeasure.length);
-    const alreadyUsing = usedIngredients
-      .some((ingredient) => ingr.name === ingredient.name);
-    const removeIngredient = usedIngredients
-      .filter((ingredient) => ingr.name !== ingredient.name);
-    if (alreadyUsing === false) {
-      setUsedIngredients([...usedIngredients, ingr]);
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    const checkedIngredients = inProgressList.meals[id];
+    const mealsToSave = {
+      meals: {
+        [id]: [...checkedIngredients, ingr.name],
+      },
+    };
+    const isAlreadyChecked = checkedIngredients
+      .some((ingredient) => ingredient === ingr.name);
+    if (isAlreadyChecked === false) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify(mealsToSave));
     } else {
-      setUsedIngredients(removeIngredient);
+      const afterRemoveIngredient = checkedIngredients
+        .filter((ingredient) => ingredient !== ingr.name);
+      const newMealsToSave = {
+        meals: {
+          [id]: afterRemoveIngredient,
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newMealsToSave));
     }
+    setUsedIngredients(inProgressList.meals[id]);
   };
 
   useEffect(() => {
-    console.log(usedIngredients, 'ingredientes usados');
-    console.log(usedIngredients.length, 'tamanho');
-    const allIngredientsChecked = usedIngredients.length > 1
-    && usedIngredients.length >= ingredientsWithMeasure.length;
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    const checkedIngredients = inProgressList.meals[id] || [];
+    const allIngredientsChecked = checkedIngredients.length > 1
+    && checkedIngredients.length >= ingredientsWithMeasure.length;
     if (allIngredientsChecked) {
       setIsBtnDisabled(false);
-      console.log('oi');
     } else {
       setIsBtnDisabled(true);
     }
@@ -120,6 +143,9 @@ export default function MealRecipeInProgress() {
     history.push('/done-recipes');
   };
 
+  const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+  // const checkedIngredients = inProgressList.meals[id] || [];
+
   return (
     <div>
       {meal.map((mealRecipe, index) => {
@@ -127,6 +153,7 @@ export default function MealRecipeInProgress() {
         return (
           <div key={ index }>
             <img
+              className="recipes-images"
               data-testid="recipe-photo"
               src={ strMealThumb }
               alt={ strMeal }
@@ -147,6 +174,7 @@ export default function MealRecipeInProgress() {
           <input
             type="checkbox"
             onChange={ () => handleIngredientCheck(ingredient) }
+            checked={ inProgressList.meals[id].some((ingr) => ingredient.name === ingr) }
           />
           { `${ingredient.name}: ${ingredient.measure}` }
         </label>

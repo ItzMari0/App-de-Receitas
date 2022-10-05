@@ -23,8 +23,21 @@ export default function DrinkRecipeInProgress() {
     setDrink(await fetchDrinks(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`));
   };
 
+  const setLocalStorage = () => {
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    if (!inProgressList.drinks) {
+      const firstEntry = {
+        drinks: {
+          [id]: [],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(firstEntry));
+    }
+  };
+
   useEffect(() => {
     drinkRecipeDetail();
+    setLocalStorage();
     if (localStorage.getItem('favoriteRecipes') !== null
     && getStorageFavoriteList(id) === true) {
       setHeartColor(false);
@@ -55,7 +68,6 @@ export default function DrinkRecipeInProgress() {
     const a = {
       name: ingredient,
       measure: measures[i],
-      // isChecked: false,
     };
     return a;
   });
@@ -91,26 +103,37 @@ export default function DrinkRecipeInProgress() {
   };
 
   const handleIngredientCheck = (ingr) => {
-    console.log(ingredientsWithMeasure.length);
-    const alreadyUsing = usedIngredients
-      .some((ingredient) => ingr.name === ingredient.name);
-    const removeIngredient = usedIngredients
-      .filter((ingredient) => ingr.name !== ingredient.name);
-    if (alreadyUsing === false) {
-      setUsedIngredients([...usedIngredients, ingr]);
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    const checkedIngredients = inProgressList.drinks[id];
+    const drinksToSave = {
+      drinks: {
+        [id]: [...checkedIngredients, ingr.name],
+      },
+    };
+    const isAlreadyChecked = checkedIngredients
+      .some((ingredient) => ingredient === ingr.name);
+    if (isAlreadyChecked === false) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify(drinksToSave));
     } else {
-      setUsedIngredients(removeIngredient);
+      const afterRemoveIngredient = checkedIngredients
+        .filter((ingredient) => ingredient !== ingr.name);
+      const newdrinksToSave = {
+        drinks: {
+          [id]: afterRemoveIngredient,
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newdrinksToSave));
     }
+    setUsedIngredients(inProgressList.drinks[id]);
   };
 
   useEffect(() => {
-    console.log(usedIngredients, 'ingredientes usados');
-    console.log(usedIngredients.length, 'tamanho');
-    const allIngredientsChecked = usedIngredients.length > 1
-    && usedIngredients.length >= ingredientsWithMeasure.length;
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
+    const checkedIngredients = inProgressList.drinks[id] || [];
+    const allIngredientsChecked = checkedIngredients.length > 1
+    && checkedIngredients.length >= ingredientsWithMeasure.length;
     if (allIngredientsChecked) {
       setIsBtnDisabled(false);
-      console.log('oi');
     } else {
       setIsBtnDisabled(true);
     }
@@ -119,6 +142,8 @@ export default function DrinkRecipeInProgress() {
   const handleFinishRcpBtn = () => {
     history.push('/done-recipes');
   };
+
+  const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
 
   return (
     <div>
@@ -147,6 +172,7 @@ export default function DrinkRecipeInProgress() {
           <input
             type="checkbox"
             onChange={ () => handleIngredientCheck(ingredient) }
+            checked={ inProgressList.drinks[id].some((ingr) => ingredient.name === ingr) }
           />
           { `${ingredient.name}: ${ingredient.measure}` }
         </label>
