@@ -1,0 +1,16 @@
+.carousel-container {
+  display: flex;
+  overflow-x: auto;
+  width: 90%;
+}
+
+.recommended-cards {
+  display: flex;
+  overflow: visible;
+}
+
+.carousel-card {
+  display: inline;
+  height: 168px;
+  width: 168px;
+}
