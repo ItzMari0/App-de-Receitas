@@ -147,11 +147,12 @@ export default function DrinkRecipeInProgress() {
 
   return (
     <div>
-      {drink.map((drinkRecipe, index) => {
+      {drink.map((drinkRecipe) => {
         const { strDrink, strAlcoholic, strDrinkThumb } = drinkRecipe;
         return (
-          <div key={ index }>
+          <div key={ strDrink }>
             <img
+              className="recipes-main"
               data-testid="recipe-photo"
               src={ strDrinkThumb }
               alt={ strDrink }

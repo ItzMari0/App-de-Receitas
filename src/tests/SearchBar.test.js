@@ -56,7 +56,7 @@ describe('Meals & Drinks API and redirection', () => {
     userEvent.click(nameInputRadio);
     userEvent.click(searchBtn);
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(5));
     expect(history.location.pathname).toBe('/meals/52771');
   });
   it('Redirects to its drink page when search result is only one recipe', async () => {
@@ -76,7 +76,7 @@ describe('Meals & Drinks API and redirection', () => {
     userEvent.click(nameInputRadio);
     userEvent.click(searchBtn);
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(5));
     expect(history.location.pathname).toBe('/drinks/178319');
   });
 });
@@ -100,7 +100,7 @@ describe('Search by ingredient', () => {
     userEvent.click(ingredientInputRadio);
     userEvent.click(searchBtn);
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(3));
     await waitFor(() => expect(screen.getByTestId('9-card-name')).toBeInTheDocument());
   });
   it('Show drinks search results', async () => {
@@ -120,7 +120,7 @@ describe('Search by ingredient', () => {
     userEvent.click(ingredientInputRadio);
     userEvent.click(searchBtn);
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(3));
     await waitFor(() => expect(screen.getByTestId(LAST_RECIPE)).toBeInTheDocument());
   });
 });
@@ -144,7 +144,7 @@ describe('Search by first letter', () => {
     userEvent.click(firstLetterInputRadio);
     userEvent.click(searchBtn);
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(3));
     await waitFor(() => expect(screen.getByTestId(LAST_RECIPE)).toBeInTheDocument());
   });
   it('Show meals search results', async () => {
@@ -164,12 +164,12 @@ describe('Search by first letter', () => {
     userEvent.click(firstLetterInputRadio);
     userEvent.click(searchBtn);
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(3));
     await waitFor(() => expect(screen.getByTestId(LAST_RECIPE)).toBeInTheDocument());
   });
 });
 
-describe('shows alert on Meals Page when no recipe is found by ingredient/name/first letter', () => {
+describe('shows alert on Meals Page when no recipe is found by ingredientfirst letter', () => {
   beforeEach(() => cleanup());
   it('shows alert on Meals page', async () => {
     jest.spyOn(global, 'fetch')
@@ -185,20 +185,20 @@ describe('shows alert on Meals Page when no recipe is found by ingredient/name/f
     expect(searchInput).toBeInTheDocument();
     const searchBtn = screen.getByTestId(BTN_SEARCH_ID);
     userEvent.type(searchInput, 'xablau');
-    const ingredientInputRadio = screen.getByTestId(INGREDIENT_RADIO_ID);
-    userEvent.click(ingredientInputRadio);
-    userEvent.click(searchBtn);
-    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
-    await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
-    const nameInputRadio = screen.getByTestId(NAME_RADIO_ID);
-    userEvent.click(nameInputRadio);
-    userEvent.click(searchBtn);
-    await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
     const firstLetterInputRadio = screen.getByTestId(FIRST_LETTER_RADIO_ID);
     userEvent.click(firstLetterInputRadio);
     userEvent.click(searchBtn);
     expect(window.global.alert).toHaveBeenCalled();
+    const ingredientInputRadio = screen.getByTestId(INGREDIENT_RADIO_ID);
+    userEvent.click(ingredientInputRadio);
+    userEvent.click(searchBtn);
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(3));
+    await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
+    // const nameInputRadio = screen.getByTestId(NAME_RADIO_ID);
+    // userEvent.click(nameInputRadio);
+    // userEvent.click(searchBtn);
+    // await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
   });
 });
 
@@ -218,19 +218,19 @@ describe('shows alert on Drinks Page when no recipe is found by ingredient/name/
     expect(searchInput).toBeInTheDocument();
     const searchBtn = screen.getByTestId(BTN_SEARCH_ID);
     userEvent.type(searchInput, 'xablau');
-    const ingredientInputRadio = screen.getByTestId(INGREDIENT_RADIO_ID);
-    userEvent.click(ingredientInputRadio);
-    userEvent.click(searchBtn);
-    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
-    await waitFor(() => expect(global.fetch).toBeCalledTimes(1));
-    await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
-    const nameInputRadio = screen.getByTestId(NAME_RADIO_ID);
-    userEvent.click(nameInputRadio);
-    userEvent.click(searchBtn);
-    await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
     const firstLetterInputRadio = screen.getByTestId(FIRST_LETTER_RADIO_ID);
     userEvent.click(firstLetterInputRadio);
     userEvent.click(searchBtn);
     expect(window.global.alert).toHaveBeenCalled();
+    const ingredientInputRadio = screen.getByTestId(INGREDIENT_RADIO_ID);
+    userEvent.click(ingredientInputRadio);
+    userEvent.click(searchBtn);
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+    await waitFor(() => expect(global.fetch).toBeCalledTimes(3));
+    await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
+    // const nameInputRadio = screen.getByTestId(NAME_RADIO_ID);
+    // userEvent.click(nameInputRadio);
+    // userEvent.click(searchBtn);
+    // await waitFor(() => expect(window.global.alert).toHaveBeenCalled());
   });
 });
