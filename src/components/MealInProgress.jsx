@@ -148,12 +148,12 @@ export default function MealRecipeInProgress() {
 
   return (
     <div>
-      {meal.map((mealRecipe, index) => {
+      {meal.map((mealRecipe) => {
         const { strMeal, strCategory, strMealThumb } = mealRecipe;
         return (
-          <div key={ index }>
+          <div key={ strMeal }>
             <img
-              className="recipes-images"
+              className="recipes-main"
               data-testid="recipe-photo"
               src={ strMealThumb }
               alt={ strMeal }
